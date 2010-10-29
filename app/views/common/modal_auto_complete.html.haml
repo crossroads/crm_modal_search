@@ -1,0 +1,11 @@
+- path = controller.controller_name
+
+#modal_search
+  .filters#modalfilters
+    %h4 #{t(:search_assets, t(controller.controller_name + "_small"))}
+    %div{ :style => "margin: 0px 0px 6px 0px" }
+      = text_field_tag("modal_query", @current_query, :size => 23)
+      = observe_field("modal_query", :frequency => 0.75, :function => "crm.modal_search(value, '#{path}')")
+      
+.modal_list
+  %small Please enter a search term.
