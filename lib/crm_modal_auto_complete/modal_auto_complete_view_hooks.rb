@@ -1,4 +1,4 @@
-class ModalAutoCompleteViewHooks < FatFreeCRM::Callback::Base
+class ModalSearchViewHooks < FatFreeCRM::Callback::Base
 
   insert_after :opportunity_top_section do |view, context|
     view.javascript_tag "crm.set_modal_search('account_id', 'accounts');"

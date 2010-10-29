@@ -3,7 +3,7 @@
 // and AJAX loads a modal dialog to select an asset.
 // The selectlist is then set to the returned value as a callback.
 crm.set_modal_search = function(el_id, controller) {
-  $(el_id).replace('<a title="Show Modal AutoComplete" id="'+el_id+'" href="#" '+
+  $(el_id).replace('<br/><a title="Show Modal Search" id="'+el_id+'" href="#" '+
                    "onclick=\"Modalbox.show('/"+controller+"/modal_search', "+
                    "{ title: 'Select Account', width: 800 }); return false;\">"+
                    "Please click here to select an account</a>");
