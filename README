@@ -1,7 +1,7 @@
-Fat Free CRM - Modal AutoComplete
+Fat Free CRM - Modal Search
 =================================
 
-Filter and Auto-Complete records in a modal window while filling out a form.
+Filter and search records in a modal window while filling out a form.
 
 - Useful if you have many, many accounts and opportunities,
   and the drop-down list on a contact or opportunity form is starting to be a pain to use.
@@ -16,8 +16,8 @@ Copyright (c) 2010 Nathan Broadbent, Crossroads Foundation, released under the M
   partial from the query results.
   
 * Adds a javascript hook to each _top_section partial, to set up a mousedown event listener for 
-  each relevant select list, in order to fire the modal auto-complete.
+  each relevant select list, in order to fire the modal search.
   
 * Adds a javascript hook to each asset show page, prepending an event listener on each
-  'select {asset}' link. Replaces the existing autocomplete with the modal autocomplete,
+  'select {asset}' link. Replaces the existing search with the modal search,
   which relies on the extended 'search' controller action.
