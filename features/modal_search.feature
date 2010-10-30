@@ -9,19 +9,20 @@ Feature: Filter and choose a record from a dedicated modal window
     
     And an account named "Crossroads International"
     And the account is tagged with "NGO"
-    And an account named "FP Tuen Mun"
+    And an account named "Tuen Mun Poker Club"
     And the account is tagged with "SWD"
     And an account named "NASA"
     And the account is tagged with "SWD"
     
     When I go to the opportunities page
     And I follow "Create Opportunity"
-    And I fill in "opportunity[name]" with "Sell boat"
-    And I fire the "mousedown" event on "account_id"
+    And I fill in "opportunity[name]" with "Shipment to the Moon"
+    And I follow "Please click here to search for an account"
     Then I should see "Select Account"
     When I fill in "modal_query" with "Tuen"
-    And I follow "FP Tuen Mun"
+    Then I should see "Tuen Mun Poker Club"
+    And I should see "0 contacts | 0 opportunities"
     
+    When I fire the "click" event on css selector "#accounts li"[0]
     And I press "Create Opportunity"
-    Then I should see "Sell boat"
-    Then I should see "FP Tuen Mun"
+    Then I should see "Shipment to the Moon from Tuen Mun Poker Club"
