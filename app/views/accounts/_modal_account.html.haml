@@ -1,7 +1,7 @@
 - account = modal_account
 - amount = account.opportunities.not_lost.sum(:amount)
 - # on_li_click = params[:update_el].blank? ? "" : "var selectThis = '"+account.id.to_s+"'; $$('select#"+params[:update_el]+" option').each(function(o) { if(o.readAttribute('value') == selectThis) { o.selected = true; throw $break; }});"
-- on_li_click = params[:update_el].blank? ? "" : "$('#{params[:update_el]}').value = '#{account.id.to_s}'; $('#{params[:update_el]}_label').innerHTML = '#{truncate(account.name, :length => 16)}';"
+- on_li_click = params[:update_el].blank? ? "" : "$('#{params[:update_el]}').value = '#{account.id.to_s}'; $('#{params[:update_el]}_label').innerHTML = '#{truncate(account.name, :length => 36)}';"
 
 %li[account]{ highlightable.merge(:onclick => "Modalbox.hide(); #{on_li_click}" )}
   - if amount != 0.0
