@@ -3,13 +3,18 @@
 // and AJAX loads a modal dialog to select an asset.
 // The selectlist is then set to the returned value as a callback.
 crm.set_modal_search = function(el_id, controller) {
-  $(el_id).insert({'after': '<br/><a title="Show Modal Search" id="'+el_id+'" href="#" '+
+
+  // Replace the element with a hidden input.
+  var el_name = $(el_id).getAttribute('name');
+  $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="">'+
+                   '<div class="modaldisplaybox" id="'+el_id+'_modalbox">'+
+                   '<div class="modaldisplay-label" id="'+el_id+'_label">-- No account selected --</div>'+
+                   '<a class="modaldisplay-button" href="#" '+
                    "onclick=\"Modalbox.show('/"+controller+"/modal_search.html?update_el="+el_id+"', "+
                    "{ title: 'Select Account', width: 800,"+
                    " beforeLoad: function(){ el=$('paging'); if(el){ el.setAttribute('id', 'paging-main'); } },"+
                    " afterHide:  function(){ el=$('paging-main'); if(el){ el.setAttribute('id', 'paging'); } }" +
-                   " }); return false;\">"+
-                   "Please click here to search for an account</a>"});
+                   " }); return false;\">select</div></div>");
 };
 
 
