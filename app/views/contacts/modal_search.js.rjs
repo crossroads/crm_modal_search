@@ -1,0 +1,6 @@
+unless @contacts.blank?
+  page[:contacts].replace_html render(:partial => "modal_contact", :collection => @contact)
+else
+  page[:contacts].replace_html render(:partial => "common/empty")
+end
+page[:modal_paginate].replace_html render(:partial => "common/modal_paginate")

@@ -3,21 +3,20 @@
 // A hidden input and label is then set, to display and post the returned asset.
 crm.set_modal_search = function(el_id, controller) {
   // Replace onclick events for (create new or select existing)
-  // -- 'create new' link
-  //$$('span#account_select_title a')[0].setAttribute('onclick', 'crm.modal_create_account_field(1); return false;');
-  // -- 'select existing' link
-  //$$('span#account_create_title a')[0].setAttribute('onclick', 'crm.modal_select_account_field(1); return false;');
 
   // Replace the element with a hidden input, add modal display box.
+  var asset = el_id.split('_')[0];
+  // 'model' is asset with uppercase first letter.
+  var model = asset.charAt(0).toUpperCase() + asset.slice(1); 
   var el_name = $(el_id).getAttribute('name');
   var visible = $(el_id).visible();
   
   $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="">'+
                    '<div class="modaldisplaybox" id="'+el_id+'_modalbox">'+
-                   '<div class="modaldisplay-label" id="'+el_id+'_label">-- No account selected --</div>'+
+                   '<div class="modaldisplay-label" id="'+el_id+'_label">-- No '+asset+' selected --</div>'+
                    '<a class="modaldisplay-button" href="#" '+
                    "onclick=\"Modalbox.show('/"+controller+"/modal_search.html?update_el="+el_id+"', "+
-                   "{ title: 'Select Account', width: 800,"+
+                   "{ title: 'Select "+model+"', width: 800,"+
                    " beforeLoad: function(){ el=$('paging'); if(el){ el.setAttribute('id', 'paging-main'); } },"+
                    " afterHide:  function(){ el=$('paging-main'); if(el){ el.setAttribute('id', 'paging'); } }" +
                    " }); return false;\">select</div></div>");
@@ -88,16 +87,14 @@ crm.select_account = function(and_focus) {
 
 // Hide contacts dropdown and show create new contact form instead.
 //----------------------------------------------------------------------------
-crm.modal_create_contact_field = function(and_focus) {
-  //$("contact_id_modalbox").hide();
+crm.create_contact = function(and_focus) {
+  if($("contact_id_modalbox")) $("contact_id_modalbox").hide();
   
   $("contact_disabled_title").hide();
   $("contact_select_title").hide();
   $("contact_create_title").show();
   $("contact_id").hide();
   $("contact_id").disable();
-
-  crm.wizard_contact();
 
   if (and_focus) {
     $("contact_first_name").focus();
@@ -106,8 +103,8 @@ crm.modal_create_contact_field = function(and_focus) {
 
 // Hide create contact edit field and show contacts dropdown instead.
 //----------------------------------------------------------------------------
-crm.modal_select_contact_field = function(and_focus) {
-  //$("contact_id_modalbox").show();
+crm.select_contact = function(and_focus) {
+  if($("contact_id_modalbox")) $("contact_id_modalbox").show();
   
   $("contact_disabled_title").hide();
   $("contact_create_title").hide();

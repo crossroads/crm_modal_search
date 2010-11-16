@@ -1,0 +1,26 @@
+- contact = modal_contact
+- gravatar_size = @current_user.preference[:contacts_outline] == "brief" ? "16x16" : "30x30"
+
+- on_li_click = params[:update_el].blank? ? "" : "$('#{params[:update_el]}').value = '#{contact.id.to_s}'; $('#{params[:update_el]}_label').innerHTML = '#{truncate(contact.name, :length => 44)}';"
+
+%li[contact]{ highlightable(dom_id(contact, :tools)).merge(:onmousedown => "this.style.background='#eee';", :onclick => "Modalbox.hide(); #{on_li_click}" )}
+  = gravatar_for(contact, :size => gravatar_size)
+
+  .indent
+    = h(contact.full_name(@current_user.preference[:contacts_naming]))
+    %tt
+      - if contact.title? && contact.department?
+        = h(contact.title) << ", " << h(contact.department)
+      - else
+        = h(contact.title) if contact.title?
+      - if contact.contact && contact.contact.name? && contact.contact.name != contact.full_name
+        == #{t :at} #{link_to h(contact.contact.name), contact_path(contact.contact)}
+      - if contact.lead and contact.lead.referred_by?
+        &ndash;
+        = #{t :referred_by_small} #{contact.lead.referred_by}"
+    - unless @current_user.preference[:contacts_outline] == "brief"
+      %dt{ :style => "padding: 2px 0px 0px 0px" }
+        = contact.email << " | " if contact.email.present?
+        = "#{t :phone_small}: <b>".html_safe + h(contact.phone) << "</b> | ".html_safe if contact.phone.present?
+        = "#{t :mobile_small}: <b>".html_safe + h(contact.mobile) << "</b> | ".html_safe if contact.mobile.present?
+        = t(:added_ago, time_ago_in_words(contact.created_at))
