@@ -53,6 +53,22 @@ crm.modal_search = function(query, controller, update_el) {
 }
 
 
+//----------------------------------------------------------------------------
+// Prototype doesn't support firing native events, like 'onchange'...
+function fireEvent(element,event){
+    if (document.createEventObject) {
+      // dispatch for IE
+      var evt = document.createEventObject();
+      return element.fireEvent('on'+event,evt)
+    }
+    else {
+      // dispatch for firefox + others
+      var evt = document.createEvent("HTMLEvents");
+      evt.initEvent(event, true, true ); // event type,bubbling,cancelable
+      return !element.dispatchEvent(evt);
+    }
+}
+
 
 // Hide accounts dropdown and show create new account edit field instead.
 //----------------------------------------------------------------------------

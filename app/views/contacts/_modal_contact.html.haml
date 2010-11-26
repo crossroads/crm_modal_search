@@ -1,7 +1,7 @@
 - contact = modal_contact
 - gravatar_size = @current_user.preference[:contacts_outline] == "brief" ? "16x16" : "30x30"
 
-- on_li_click = params[:update_el].blank? ? "" : "$('#{params[:update_el]}').value = '#{contact.id.to_s}'; $('#{params[:update_el]}_label').innerHTML = '#{truncate(contact.name, :length => 44)}';"
+- on_li_click = params[:update_el].blank? ? "" : "$('#{params[:update_el]}').value = '#{contact.id.to_s}'; $('#{params[:update_el]}_label').innerHTML = '#{truncate(contact.name, :length => 44)}'; fireEvent($('contact_id'), 'change')"
 
 %li[contact]{ highlightable(dom_id(contact, :tools)).merge(:onmousedown => "this.style.background='#eee';", :onclick => "Modalbox.hide(); #{on_li_click}" )}
   = gravatar_for(contact, :size => gravatar_size)
