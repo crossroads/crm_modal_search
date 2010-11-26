@@ -61,3 +61,14 @@ end
     
   end
 end
+
+
+# Until our rails 3 patch is accepted, we need to delete blank account ids.
+#----------------------------------------------------------------------------
+OpportunitiesController.class_eval do
+  def create_with_account_fix
+    params[:account].delete(:id) if params[:account] && params[:account][:id].blank?
+    create_without_account_fix
+  end
+  alias_method_chain :create, :account_fix
+end
