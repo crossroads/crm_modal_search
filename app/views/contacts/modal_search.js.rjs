@@ -1,5 +1,5 @@
 unless @contacts.blank?
-  page[:contacts].replace_html render(:partial => "modal_contact", :collection => @contact)
+  page[:contacts].replace_html render(:partial => "modal_contact", :collection => @contacts)
 else
   page[:contacts].replace_html render(:partial => "common/empty")
 end

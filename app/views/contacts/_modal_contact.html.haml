@@ -6,15 +6,15 @@
 %li[contact]{ highlightable(dom_id(contact, :tools)).merge(:onmousedown => "this.style.background='#eee';", :onclick => "Modalbox.hide(); #{on_li_click}" )}
   = gravatar_for(contact, :size => gravatar_size)
 
-  .indent
+  .indentslim
     = h(contact.full_name(@current_user.preference[:contacts_naming]))
     %tt
       - if contact.title? && contact.department?
         = h(contact.title) << ", " << h(contact.department)
       - else
         = h(contact.title) if contact.title?
-      - if contact.contact && contact.contact.name? && contact.contact.name != contact.full_name
-        == #{t :at} #{link_to h(contact.contact.name), contact_path(contact.contact)}
+      - if contact.account && contact.account.name?
+        == #{t :at} #{h(contact.account.name)}
       - if contact.lead and contact.lead.referred_by?
         &ndash;
         = #{t :referred_by_small} #{contact.lead.referred_by}"

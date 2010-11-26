@@ -3,29 +3,30 @@
 // A hidden input and label is then set, to display and post the returned asset.
 crm.set_modal_search = function(el_id, controller) {
   // Replace onclick events for (create new or select existing)
-
-  // Replace the element with a hidden input, add modal display box.
-  var asset = el_id.split('_')[0];
-  // 'model' is asset with uppercase first letter.
-  var model = asset.charAt(0).toUpperCase() + asset.slice(1); 
-  var el_name = $(el_id).getAttribute('name');
-  var visible = $(el_id).visible();
-  
-  $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="">'+
-                   '<div class="modaldisplaybox" id="'+el_id+'_modalbox">'+
-                   '<div class="modaldisplay-label" id="'+el_id+'_label">-- No '+asset+' selected --</div>'+
-                   '<a class="modaldisplay-button" href="#" '+
-                   "onclick=\"Modalbox.show('/"+controller+"/modal_search.html?update_el="+el_id+"', "+
-                   "{ title: 'Select "+model+"', width: 800,"+
-                   " beforeLoad: function(){ el=$('paging'); if(el){ el.setAttribute('id', 'paging-main'); } },"+
-                   " afterHide:  function(){ el=$('paging-main'); if(el){ el.setAttribute('id', 'paging'); } }" +
-                   " }); return false;\">select</div></div>");
-  
-  // Preserve the state of the input when validation returns
-  if (!visible) {
-    $(el_id+"_modalbox").hide();
-    $(el_id).hide();
-    $(el_id).disable();
+  if($(el_id)){
+    // Replace the element with a hidden input, add modal display box.
+    var asset = el_id.split('_')[0];
+    // 'model' is asset with uppercase first letter.
+    var model = asset.charAt(0).toUpperCase() + asset.slice(1); 
+    var el_name = $(el_id).getAttribute('name');
+    var visible = $(el_id).visible();
+    
+    $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="">'+
+                     '<div class="modaldisplaybox" id="'+el_id+'_modalbox">'+
+                     '<div class="modaldisplay-label" id="'+el_id+'_label">-- No '+asset+' selected --</div>'+
+                     '<a class="modaldisplay-button" href="#" '+
+                     "onclick=\"Modalbox.show('/"+controller+"/modal_search.html?update_el="+el_id+"', "+
+                     "{ title: 'Select "+model+"', width: 800,"+
+                     " beforeLoad: function(){ el=$('paging'); if(el){ el.setAttribute('id', 'paging-main'); } },"+
+                     " afterHide:  function(){ el=$('paging-main'); if(el){ el.setAttribute('id', 'paging'); } }" +
+                     " }); return false;\">select</div></div>");
+    
+    // Preserve the state of the input when validation returns
+    if (!visible) {
+      $(el_id+"_modalbox").hide();
+      $(el_id).hide();
+      $(el_id).disable();
+    };
   };
 };
 

@@ -1,8 +1,9 @@
 class ModalSearchViewHooks < FatFreeCRM::Callback::Base
 
-  insert_after :opportunity_top_section do |view, context|
-    view.javascript_tag "crm.set_modal_search('account_id', 'accounts');"
-    view.javascript_tag "crm.set_modal_search('contact_id', 'contacts');"
+  # Attaches javascript events at the end of each new opportunity rjs template
+  def new_opportunity_rjs(view, context = {})
+    context[:page].call "crm.set_modal_search", 'account_id', 'accounts'
+    context[:page].call "crm.set_modal_search", 'contact_id', 'contacts'
   end
 
   #----------------------------------------------------------------------------

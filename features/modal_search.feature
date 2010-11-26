@@ -4,7 +4,7 @@ Feature: Filter and choose a record from a dedicated modal window
   Users
   need to see more details and be confident that they are choosing the correct record.
   
-  Scenario: User fills out the Opportunity create form and chooses an account via the modal window
+  Scenario: User fills out the Opportunity create form and selects an account via the modal window
     Given a logged in user
     
     And an account named "Crossroads International"
@@ -17,7 +17,7 @@ Feature: Filter and choose a record from a dedicated modal window
     When I go to the opportunities page
     And I follow "Create Opportunity"
     And I fill in "opportunity[name]" with "Shipment to the Moon"
-    And I follow "Please click here to search for an account"
+    And I follow "select" within "#account_id_modalbox"
     Then I should see "Select Account"
     When I fill in "modal_query" with "Tuen"
     Then I should see "Tuen Mun Poker Club"
