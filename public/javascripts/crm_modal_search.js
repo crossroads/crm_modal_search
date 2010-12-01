@@ -11,9 +11,17 @@ crm.set_modal_search = function(el_id, controller) {
     var el_name = $(el_id).getAttribute('name');
     var visible = $(el_id).visible();
     
-    $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="">'+
+    // Retrieve the currently selected values
+    var selected_id   = $(el_id).value || "";
+    var selected_text = $(el_id).options[$(el_id).selectedIndex].text;
+    // Set a default message for nothing selected.
+    if(!selected_text || selected_text === ""){
+      selected_text = '-- No '+asset+' selected --';
+    };
+    
+    $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="'+selected_id+'">'+
                      '<div class="modaldisplaybox" id="'+el_id+'_modalbox">'+
-                     '<div class="modaldisplay-label" id="'+el_id+'_label">-- No '+asset+' selected --</div>'+
+                     '<div class="modaldisplay-label" id="'+el_id+'_label">'+selected_text+'</div>'+
                      '<a class="modaldisplay-button" href="#" '+
                      "onclick=\"Modalbox.show('/"+controller+"/modal_search.html?update_el="+el_id+"', "+
                      "{ title: 'Select "+model+"', width: 800,"+

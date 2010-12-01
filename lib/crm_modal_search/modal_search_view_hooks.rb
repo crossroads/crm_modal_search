@@ -5,7 +5,9 @@ class ModalSearchViewHooks < FatFreeCRM::Callback::Base
     context[:page].call "crm.set_modal_search", 'account_id', 'accounts'
     context[:page].call "crm.set_modal_search", 'contact_id', 'contacts'
   end
-
+  # Duplicate this hook for edit rjs
+  alias :edit_opportunity_rjs :new_opportunity_rjs 
+  
   #----------------------------------------------------------------------------
   def javascript_includes(view, context = {})
     # Load the plugin javascript extensions
