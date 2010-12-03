@@ -50,6 +50,7 @@
         height: 100%;
         float: right;
         border-left: 1px solid #C4C4C4;
+        border-top: 1px solid #C4C4C4;
     }
     a.modaldisplay-button:hover {
         color: #000;
