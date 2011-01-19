@@ -7,10 +7,10 @@ crm.set_modal_search = function(el_id, controller) {
     // Replace the element with a hidden input, add modal display box.
     var asset = el_id.split('_')[0];
     // 'model' is asset with uppercase first letter.
-    var model = asset.charAt(0).toUpperCase() + asset.slice(1); 
+    var model = asset.charAt(0).toUpperCase() + asset.slice(1);
     var el_name = $(el_id).getAttribute('name');
     var visible = $(el_id).visible();
-    
+
     // Retrieve the currently selected values
     var selected_id   = $(el_id).value || "";
     var selected_text = $(el_id).options[$(el_id).selectedIndex].text;
@@ -18,8 +18,8 @@ crm.set_modal_search = function(el_id, controller) {
     if(!selected_text || selected_text === ""){
       selected_text = '-- No '+asset+' selected --';
     };
-    
-    $(el_id).replace('<br/><input type="hidden" name="'+el_name+'" id="'+el_id+'" value="'+selected_id+'">'+
+
+    $(el_id).replace('<input type="hidden" name="'+el_name+'" id="'+el_id+'" value="'+selected_id+'">'+
                      '<div class="modaldisplaybox" id="'+el_id+'_modalbox">'+
                      '<div class="modaldisplay-label" id="'+el_id+'_label">'+selected_text+'</div>'+
                      '<a class="modaldisplay-button" href="#" '+
@@ -28,7 +28,7 @@ crm.set_modal_search = function(el_id, controller) {
                      " beforeLoad: function(){ el=$('paging'); if(el){ el.setAttribute('id', 'paging-main'); } },"+
                      " afterHide:  function(){ el=$('paging-main'); if(el){ el.setAttribute('id', 'paging'); } }" +
                      " }); return false;\">select</div></div>");
-    
+
     // Preserve the state of the input when validation returns
     if (!visible) {
       $(el_id+"_modalbox").hide();
@@ -82,7 +82,7 @@ function fireEvent(element,event){
 //----------------------------------------------------------------------------
 crm.create_account = function(and_focus) {
   if($("account_id_modalbox")) $("account_id_modalbox").hide();
-  
+
   $("account_disabled_title").hide();
   $("account_select_title").hide();
   $("account_create_title").show();
@@ -100,7 +100,7 @@ crm.create_account = function(and_focus) {
 //----------------------------------------------------------------------------
 crm.select_account = function(and_focus) {
   if($("account_id_modalbox")) $("account_id_modalbox").show();
-  
+
   $("account_disabled_title").hide();
   $("account_create_title").hide();
   $("account_select_title").show();
@@ -114,7 +114,7 @@ crm.select_account = function(and_focus) {
 //----------------------------------------------------------------------------
 crm.create_contact = function(and_focus) {
   if($("contact_id_modalbox")) $("contact_id_modalbox").hide();
-  
+
   $("contact_disabled_title").hide();
   $("contact_select_title").hide();
   $("contact_create_title").show();
@@ -130,7 +130,7 @@ crm.create_contact = function(and_focus) {
 //----------------------------------------------------------------------------
 crm.select_contact = function(and_focus) {
   if($("contact_id_modalbox")) $("contact_id_modalbox").show();
-  
+
   $("contact_disabled_title").hide();
   $("contact_create_title").hide();
   $("contact_select_title").show();
