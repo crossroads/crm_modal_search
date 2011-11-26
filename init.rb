@@ -9,5 +9,3 @@ FatFreeCRM::Plugin.register(:crm_modal_search, self) do
 end
 
 require "crm_modal_search"
-
-Rails.configuration.middleware.insert_before ::Rack::Lock, ::ActionDispatch::Static, root.join('public')
