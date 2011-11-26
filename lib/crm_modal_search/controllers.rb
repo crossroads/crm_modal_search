@@ -47,7 +47,7 @@ end
     # Returns the html of the search template
     def modal_search
       respond_to do |format|
-        format.html { render 'common/modal_search',
+        format.html { render 'shared/modal_search',
                              :layout => false }
       end
     end
