@@ -10,4 +10,4 @@ end
 
 require "crm_modal_search"
 
-Rails.configuration.middleware.insert_before ::Rack::Lock, ::ActionDispatch::Static, root.join('public')
+Rails.configuration.middleware.insert_before ::Rack::Lock, ::ActionDispatch::Static, Rails.root.join('public')
